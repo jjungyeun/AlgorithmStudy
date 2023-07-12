@@ -1,7 +1,4 @@
-import java.io.BufferedWriter;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class P1427 {
@@ -17,13 +14,34 @@ public class P1427 {
             arr[N-i-1] = (int) (inputNum % 10);
             inputNum /= 10;
         }
-        Arrays.sort(arr);
+        SelectionSort sorter = new SelectionSort();
+        sorter.sortDesc(arr);
 
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        for (int i = N-1; i >= 0; i--) {
-            bw.write(String.valueOf(arr[i]));
+        for (int i = 0; i < N; i++) {
+            System.out.print(arr[i]);
         }
-        bw.flush();
-        bw.close();
     }
+
+    private static class SelectionSort {
+
+        public void sortDesc(int[] arr) {
+            for (int i = 0; i < arr.length; i++) {
+                int maxVal = arr[i];
+                int maxIdx = i;
+
+                for (int j = i+1; j < arr.length; j++) {
+                    if (arr[j] > maxVal) {
+                        maxVal = arr[j];
+                        maxIdx = j;
+                    }
+                }
+
+                if (maxIdx != i) {
+                    arr[maxIdx] = arr[i];
+                    arr[i] = maxVal;
+                }
+            }
+        }
+    }
+
 }
