@@ -1,4 +1,4 @@
-class Solution {
+class P231206 {
 
     /*
       풀이1: 슬라이딩 윈도우
